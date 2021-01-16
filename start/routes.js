@@ -60,5 +60,20 @@ Route.group(() => {
   .apiOnly()
   .validator(new Map([[['users.languages.store','users.languages.update'],['Language']]]))
 
+  Route.resource('users.reports', 'ReportController')
+  .apiOnly()
+  .validator(new Map([[['users.reports.store','users.reports.update'],['Report']]]))
+
+  // Route.resource('users.reports', 'ReportController')
+  // .apiOnly()
+  // .validator(new Map([[['users.reports.store','users.reports.update'],['Report']]]))
+
+  Route.resource('reports.subjects', 'SubjectController')
+  .apiOnly()
+  .validator(new Map([[['reports.subjects.store','reports.subjects.update'],['Subject']]]))
+
+  Route.resource('subjects.grades', 'GradeController')
+  .apiOnly()
+  .validator(new Map([[['subjects.grades.store','subjects.grades.update'],['Grade']]]))
 
 }).middleware(['auth'])
