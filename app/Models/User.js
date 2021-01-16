@@ -58,6 +58,14 @@ class User extends Model {
     return this.hasMany('App/Models/Experience')
   }
 
+  languages () {
+    return this.hasMany('App/Models/Language')
+  }
+
+  interests () {
+    return this.hasMany('App/Models/Interest')
+  }
+
 }
 
 module.exports = User
