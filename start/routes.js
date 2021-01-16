@@ -47,4 +47,18 @@ Route.group(() => {
   .apiOnly()
   .validator(new Map([[['users.experiences.store','users.experiences.update'],['Experience']]]))
 
+  Route.resource('companies.employees', 'EmployeeController')
+  .apiOnly()
+  .validator(new Map([[['companies.employees.store','companies.employees.update'],['Employee']]]))
+
+  Route.resource('users.interests', 'InterestController')
+  .apiOnly()
+  .validator(new Map([[['users.interests.store','users.interests.update'],['Interest']]]))
+
+
+  Route.resource('users.languages', 'LanguageController')
+  .apiOnly()
+  .validator(new Map([[['users.languages.store','users.languages.update'],['Language']]]))
+
+
 }).middleware(['auth'])

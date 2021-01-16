@@ -4,15 +4,15 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-const Language = use('App/Models/Language')
+const Employee = use('App/Models/Employee')
 
 /**
- * Resourceful controller for interacting with languages
+ * Resourceful controller for interacting with employees
  */
-class LanguageController {
+class EmployeeController {
   /**
-   * Show a list of all languages.
-   * GET languages
+   * Show a list of all employees.
+   * GET employees
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -20,36 +20,37 @@ class LanguageController {
    * @param {View} ctx.view
    */
   async index ({ params, request, response, view }) {
-    const languages = await Language
+    const employees = await Employee
     .query()
-    .where('user_id', params.users_id)
+    .where('company_id', params.companies_id)
     .fetch()
 
-    return languages
+    return employees
   }
 
   /**
-   * Create/save a new language.
-   * POST languages
+   * Create/save a new employee.
+   * POST employees
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ auth, request, response }) {
+  async store ({ params, request, response }) {
     const data = request.only([
-      'language',
-      'level',
+      'user_id',
+      'occupation',
     ])
 
-    data.user_id = auth.user.id
-    const language = await Language.create(data)
-    return language
+    data.company_id = params.companies_id
+
+    const employee = await Employee.create(data)
+    return employee
   }
 
   /**
-   * Display a single language.
-   * GET languages/:id
+   * Display a single employee.
+   * GET employees/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -57,45 +58,44 @@ class LanguageController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
-    const language = await Language.findOrFail(params.id)
+    const employee = await Employee.findOrFail(params.id)
 
-    return language
+    return employee
   }
 
   /**
-   * Update language details.
-   * PUT or PATCH languages/:id
+   * Update employee details.
+   * PUT or PATCH employees/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ auth, params, request, response }) {
-    const language = await Language.findOrFail(params.id)
+  async update ({ params, request, response }) {
+    const employee = await Employee.findOrFail(params.id)
 
     const data = request.only([
-      'language',
-      'level',
+      'occupation',
     ])
 
-    language.merge(data)
-    await language.save()
-    return language
+    employee.merge(data)
+    await employee.save()
+    return employee
   }
 
   /**
-   * Delete a language with id.
-   * DELETE languages/:id
+   * Delete a employee with id.
+   * DELETE employees/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
-    const language = await Language.findOrFail(params.id)
+    const employee = await Employee.findOrFail(params.id)
 
-    await language.delete()
+    await employee.delete()
   }
 }
 
-module.exports = LanguageController
+module.exports = EmployeeController
