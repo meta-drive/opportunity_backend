@@ -22,7 +22,7 @@ class AcademicController {
   async index ({ params, request, response, view }) {
     const academics = await Academic
       .query()
-      .where('user_id', params.user_id)
+      .where('user_id', params.users_id)
       .fetch()
 
     return academics

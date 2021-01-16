@@ -30,12 +30,17 @@ Route.group(() => {
 
   Route.post('photo', 'PhotoUserController.store')
   Route.get('photo/:user_id', 'PhotoUserController.show')
-}).middleware(['auth'])
 
-Route.group(() => {
-  Route.get('users/:user_id/academics', 'AcademicController.index')
-  Route.post('users/:user_id/academics/', 'AcademicController.store').validator('Academic')
-  Route.get('users/:user_id/academics/:id', 'AcademicController.show')
-  Route.put('users/:user_id/academics/:id', 'AcademicController.update').validator('Academic')
-  Route.delete('users/:user_id/academics/:id', 'AcademicController.destroy')
+  Route.resource('users.academics','AcademicController')
+  .apiOnly()
+  .validator(new Map([[['users.academics.store','users.academics.update'],['Academic']]]))
+
+  Route.resource('companies','CompanyController')
+  .apiOnly()
+  .validator(new Map([[['companies.store','companies.update'],['Company']]]))
+
+  Route.resource('companies.branches','BranchController')
+  .apiOnly()
+  .validator(new Map([[['companies.branches.store','companies.branches.update'],['Branch']]]))
+
 }).middleware(['auth'])
