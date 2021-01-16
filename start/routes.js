@@ -80,6 +80,14 @@ Route.group(() => {
   .apiOnly()
   .validator(new  Map([[['competences.store','competences.update'],['Competence']]]))
 
+  Route.resource('companies.challenges', 'ChallengeController')
+  .apiOnly()
+  .validator(new  Map([[['companies.challenges.store','companies.challenges.update'],['Challenge']]]))
+
+  Route.resource('challenges.questions', 'QuestionController')
+  .apiOnly()
+  .validator(new  Map([[['challenges.questions.store','challenges.questions.update'],['Question']]]))
+
 }).middleware(['auth'])
 
 
