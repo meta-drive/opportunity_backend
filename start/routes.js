@@ -43,4 +43,8 @@ Route.group(() => {
   .apiOnly()
   .validator(new Map([[['companies.branches.store','companies.branches.update'],['Branch']]]))
 
+  Route.resource('users.experiences', 'ExperienceController')
+  .apiOnly()
+  .validator(new Map([[['users.experiences.store','users.experiences.update'],['Experience']]]))
+
 }).middleware(['auth'])
