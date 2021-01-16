@@ -31,3 +31,11 @@ Route.group(() => {
   Route.post('photo', 'PhotoUserController.store')
   Route.get('photo/:user_id', 'PhotoUserController.show')
 }).middleware(['auth'])
+
+Route.group(() => {
+  Route.get('users/:user_id/academics', 'AcademicController.index')
+  Route.post('users/:user_id/academics/', 'AcademicController.store').validator('Academic')
+  Route.get('users/:user_id/academics/:id', 'AcademicController.show')
+  Route.put('users/:user_id/academics/:id', 'AcademicController.update').validator('Academic')
+  Route.delete('users/:user_id/academics/:id', 'AcademicController.destroy')
+}).middleware(['auth'])
