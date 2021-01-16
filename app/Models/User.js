@@ -74,6 +74,14 @@ class User extends Model {
     return this.hasMany('App/Models/Report')
   }
 
+  user_evaluations () {
+    return this.hasMany('App/Models/UserEvaluation')
+  }
+
+  company_evaluations () {
+    return this.hasMany('App/Models/CompanyEvaluation', 'reviewer_user_id', 'id')
+  }
+
 }
 
 module.exports = User

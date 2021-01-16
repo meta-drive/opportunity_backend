@@ -76,4 +76,25 @@ Route.group(() => {
   .apiOnly()
   .validator(new Map([[['subjects.grades.store','subjects.grades.update'],['Grade']]]))
 
+  Route.resource('competences', 'CompetenceController')
+  .apiOnly()
+  .validator(new  Map([[['competences.store','competences.update'],['Competence']]]))
+
+}).middleware(['auth'])
+
+
+Route.group(() => {
+  Route.post('occupations', 'OccupationController.store')
+  Route.put('occupations/:id', 'OccupationController.update')
+  Route.get('occupations', 'OccupationController.index')
+  Route.get('occupations/:id', 'OccupationController.show')
+  Route.delete('occupations/:id', 'OccupationController.destroy')
+}).middleware(['auth'])
+
+Route.group(() => {
+  Route.post('vacancies', 'VacancyController.store')
+  Route.put('vacancies/:id', 'VacancyController.update')
+  Route.get('vacancies', 'VacancyController.index')
+  Route.get('vacancies/:id', 'VacancyController.show')
+  Route.delete('vacancies/:id', 'VacancyController.destroy')
 }).middleware(['auth'])
