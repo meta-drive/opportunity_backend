@@ -8,6 +8,14 @@ class Branch extends Model {
   company () {
     return this.belongsTo('App/Models/Company')
   }
+
+  address () {
+    return this.hasOne('App/Models/BranchAddress')
+  }
+
+  vacancies () {
+    return this.hasMany('App/Models/Vacancy')
+  }
 }
 
 module.exports = Branch

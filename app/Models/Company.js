@@ -20,6 +20,10 @@ class Company extends Model {
   company_evaluations () {
     return this.hasMany('App/Models/CompanyEvaluation')
   }
+
+  challenges () {
+    return this.hasMany('App/Models/Challenge')
+  }
 }
 
 module.exports = Company

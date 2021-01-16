@@ -82,6 +82,18 @@ class User extends Model {
     return this.hasMany('App/Models/CompanyEvaluation', 'reviewer_user_id', 'id')
   }
 
+  emblems () {
+    return this.belongsToMany('App/Models/Emblem').pivotTable('user_emblems')
+  }
+
+  address () {
+    return this.hasOne('App/Models/UserAddress')
+  }
+
+  challengesAccepted () {
+    return this.hasMany('App/Models/ChallengeAccepted')
+  }
+
 }
 
 module.exports = User

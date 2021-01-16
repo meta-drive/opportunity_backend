@@ -1,103 +1,21 @@
 'use strict'
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
+/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
+const Model = use('Model')
 
-const Challenge = use('App/Models/Challenge')
+class ChallengeAccepted extends Model {
 
-/**
- * Resourceful controller for interacting with challenges
- */
-class ChallengeController {
-  /**
-   * Show a list of all challenges.
-   * GET challenges
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index ({ params, request, response, view }) {
-    const challenges = Challenge
-      .query()
-      .with('questions')
-      .where('company_id', params.companies_id)
-      .fetch()
-
-    return challenges
+  challenge () {
+    return this.belongsTo('App/Models/Challenge')
   }
 
-  /**
-   * Create/save a new challenge.
-   * POST challenges
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ params, request, response }) {
-    const data = request.only([
-      'competence_id',
-      'title',
-      'description'
-    ])
-
-    data.company_id = params.companies_id
-    const challenge = await Challenge.create(data)
-
-    return challenge
+  user () {
+    return this.belongsTo('App/Models/User')
   }
 
-  /**
-   * Display a single challenge.
-   * GET challenges/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show ({ params, request, response, view }) {
-    const challenge = await Challenge.findOrFail(params.id)
-
-    return challenge
-  }
-
-  /**
-   * Update challenge details.
-   * PUT or PATCH challenges/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-    const challenge = await Challenge.findOrFail(params.id)
-
-    const data = request.only([
-      'competence_id',
-      'title',
-      'description'
-    ])
-
-    challenge.merge(data)
-    await challenge.save()
-
-    return challenge
-  }
-
-  /**
-   * Delete a challenge with id.
-   * DELETE challenges/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
+  user () {
+    return this.hasMany('App/Models/Answers')
   }
 }
 
-module.exports = ChallengeController
+module.exports = ChallengeAccepted

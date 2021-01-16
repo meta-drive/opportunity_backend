@@ -64,6 +64,14 @@ Route.group(() => {
   .apiOnly()
   .validator(new Map([[['users.reports.store','users.reports.update'],['Report']]]))
 
+  Route.resource('users.addresses', 'UserAddressController')
+  .apiOnly()
+  .validator(new Map([[['users.addresses.store','users.addresses.update'],['Address']]]))
+
+  Route.resource('branches.addresses', 'BranchAddressController')
+  .apiOnly()
+  .validator(new Map([[['branches.addresses.store','branches.addresses.update'],['Address']]]))
+
   // Route.resource('users.reports', 'ReportController')
   // .apiOnly()
   // .validator(new Map([[['users.reports.store','users.reports.update'],['Report']]]))
