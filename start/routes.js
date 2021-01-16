@@ -27,4 +27,7 @@ Route.group(() => {
   Route.get('users', 'UserController.index')
   Route.get('users/:id', 'UserController.show')
   Route.put('users/:id', 'UserController.update').validator('User/Update')
+
+  Route.post('photo', 'PhotoUserController.store')
+  Route.get('photo/:user_id', 'PhotoUserController.show')
 }).middleware(['auth'])

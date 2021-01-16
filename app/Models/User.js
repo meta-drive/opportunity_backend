@@ -6,6 +6,8 @@ const Model = use('Model')
 /** @type {import('@adonisjs/framework/src/Hash')} */
 const Hash = use('Hash')
 
+const Env = use('Env')
+
 class User extends Model {
 
   static get hidden () {
@@ -24,6 +26,14 @@ class User extends Model {
         userInstance.password = await Hash.make(userInstance.password)
       }
     })
+  }
+
+  static get computed () {
+    return ['url']
+  }
+
+  getUrl ({ id }) {
+    return `${Env.get('APP_URL')}/photo/${id}`
   }
 
   /**
