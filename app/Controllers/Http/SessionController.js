@@ -19,10 +19,20 @@ class SessionController {
   async store ({ auth, request, response }) {
     const { email, password } = request.all()
 
-    const token = await auth.attempt(email, password)
-    const user = await User.findBy('email', email)
+    try {
+      const token = await auth.attempt(email, password)
+      const user = await User.findBy('email', email)
 
-    return { token, user }
+      return response.status(200).json({
+        message: 'O login foi efetuado com sucesso!',
+        token,
+        user
+      })
+    } catch (err) {
+      return response.status(401).json({
+        message: 'Não foi possível efetuar login, verifique se as credenciais estão corretas.'
+      })
+    }
   }
 }
 

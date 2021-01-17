@@ -22,6 +22,13 @@ class UserStore {
       is_pcd: 'boolean'
     }
   }
+
+  async fails (msg) {
+    return this.ctx.response.status(400).json({
+      message: 'Falha ao cadastrar usuário, verifique se os campos estão preenchidos corretamente.',
+      errors: msg
+    })
+  }
 }
 
 module.exports = UserStore
