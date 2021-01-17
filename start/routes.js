@@ -22,6 +22,7 @@ Route.get('/', () => {
 
 Route.post('users', 'UserController.store').validator('User/Store')
 Route.post('session', 'SessionController.store')
+Route.get('photo/:user_id', 'PhotoUserController.show')
 
 Route.group(() => {
   Route.get('users', 'UserController.index')
@@ -29,7 +30,6 @@ Route.group(() => {
   Route.put('users/:id', 'UserController.update').validator('User/Update')
 
   Route.post('photo', 'PhotoUserController.store')
-  Route.get('photo/:user_id', 'PhotoUserController.show')
 
   Route.resource('users.academics','AcademicController')
   .apiOnly()
