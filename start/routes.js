@@ -93,7 +93,7 @@ Route.group(() => {
   .apiOnly()
   .validator(new  Map([[['competences.store','competences.update'],['Competence']]]))
 
-  Route.resource('companies.challenges', 'ChallengeController')
+  Route.resource('companies.challenges', 'CompanyChallengeController')
   .apiOnly()
   .validator(new  Map([[['companies.challenges.store','companies.challenges.update'],['Challenge']]]))
 
@@ -104,6 +104,8 @@ Route.group(() => {
 }).middleware(['auth'])
 
 
+Route.get('challenges', 'ChallengeController.index');
+
 Route.group(() => {
   Route.post('occupations', 'OccupationController.store')
   Route.put('occupations/:id', 'OccupationController.update')
@@ -112,10 +114,11 @@ Route.group(() => {
   Route.delete('occupations/:id', 'OccupationController.destroy')
 }).middleware(['auth'])
 
+Route.get('vacancies', 'VacancyController.index')
+Route.get('vacancies/:id', 'VacancyController.show')
+
 Route.group(() => {
   Route.post('vacancies', 'VacancyController.store')
   Route.put('vacancies/:id', 'VacancyController.update')
-  Route.get('vacancies', 'VacancyController.index')
-  Route.get('vacancies/:id', 'VacancyController.show')
   Route.delete('vacancies/:id', 'VacancyController.destroy')
 }).middleware(['auth'])
