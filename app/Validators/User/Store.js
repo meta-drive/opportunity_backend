@@ -21,6 +21,13 @@ class UserStore {
       instagram: 'max:150'
     }
   }
+
+  async fails (msg) {
+    return this.ctx.response.status(400).json({
+      message: 'Falha ao cadastrar usuário, verifique se os campos estão preenchidos corretamente.',
+      errors: msg
+    })
+  }
 }
 
 module.exports = UserStore
