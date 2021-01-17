@@ -35,6 +35,10 @@ Route.group(() => {
   .apiOnly()
   .validator(new Map([[['users.academics.store','users.academics.update'],['Academic']]]))
 
+  Route.resource('emblems','EmblemController')
+  .apiOnly()
+  .validator(new Map([[['emblems.store','emblems.update'],['Emblem']]]))
+
   Route.resource('companies','CompanyController')
   .apiOnly()
   .validator(new Map([[['companies.store','companies.update'],['Company']]]))
