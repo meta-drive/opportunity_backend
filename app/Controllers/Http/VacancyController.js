@@ -38,7 +38,8 @@ class VacancyController {
       'occupation_id',
       'branch_id',
       'description',
-      'salary'
+      'salary',
+      'is_for_pcd',
     ])
 
     const vacancy = await Vacancy.create(data)
@@ -75,7 +76,8 @@ class VacancyController {
       'occupation_id',
       'branch_id',
       'description',
-      'salary'
+      'salary',
+      'is_for_pcd',
     ])
 
     vacancy.merge(data)

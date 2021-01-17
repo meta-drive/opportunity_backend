@@ -7,11 +7,11 @@ class UserSchema extends Schema {
   up () {
     this.create('users', (table) => {
       table.increments()
-      table.string('username', 80).notNullable().unique()
+      table.string('username', 80).notNullable()
       table.string('email', 254).notNullable().unique()
       table.string('password', 60).notNullable()
       table.date('birth_date').notNullable()
-      table.string('description', 200).notNullable()
+      table.string('description', 500).notNullable()
       table.string('phone', 15).notNullable()
       table.enu('genre', ['M','F']).notNullable()
       table.string('photo', 255)
@@ -21,6 +21,7 @@ class UserSchema extends Schema {
       table.string('facebook', 150)
       table.string('linkedin', 150)
       table.string('instagram', 150)
+      table.boolean('is_pcd').notNullable().default(false)
       table.timestamps()
     })
   }

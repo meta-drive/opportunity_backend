@@ -44,7 +44,8 @@ class UserController {
          'professional_resume',
          'facebook',
          'linkedin',
-         'instagram'
+         'instagram',
+         'is_pcd',
         ])
 
     const user = await User.create(data)
@@ -89,7 +90,8 @@ class UserController {
        'professional_resume',
        'facebook',
        'linkedin',
-       'instagram'
+       'instagram',
+       'is_pcd'
       ])
 
       user.merge(data)

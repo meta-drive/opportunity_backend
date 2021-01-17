@@ -11,6 +11,7 @@ class VacancySchema extends Schema {
       table.integer('branch_id').unsigned().references('id').inTable('branches')
       table.text('description').notNullable()
       table.decimal('salary', 9, 2)
+      table.boolean('is_for_pcd').notNullable().default(false)
       table.timestamps()
     })
   }
