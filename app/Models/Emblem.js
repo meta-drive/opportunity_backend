@@ -12,7 +12,7 @@ class Emblem extends Model {
   }
 
   getUrl ({ id }) {
-    return `${Env.get('APP_URL')}/image/${id}`
+    return `${Env.get('APP_URL')}/emblem/${id}`
   }
 
   users () {

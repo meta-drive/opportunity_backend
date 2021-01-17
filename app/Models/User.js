@@ -29,12 +29,35 @@ class User extends Model {
   }
 
   static get computed () {
-    return ['url']
+    return [
+      'url',
+      'is_profile_completed',
+      'is_general_challenges_completed',
+      'is_specific_challenges_completed',
+      'is_interest_filled'
+    ]
   }
 
   getUrl ({ id }) {
     return `${Env.get('APP_URL')}/photo/${id}`
   }
+
+  getIsProfileCompleted ({ id }) {
+    return true
+  }
+
+  getIsGeneralChallengesCompleted ({ id }) {
+    return true
+  }
+
+  getIsSpecificChallengesCompleted ({ id }) {
+    return false
+  }
+
+  getIsInterestFilled ({ id }) {
+    return true
+  }
+
 
   /**
    * A relationship on tokens is required for auth to

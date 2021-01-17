@@ -23,6 +23,7 @@ Route.get('/', () => {
 Route.post('users', 'UserController.store').validator('User/Store')
 Route.post('session', 'SessionController.store')
 Route.get('photo/:user_id', 'PhotoUserController.show')
+Route.get('emblem/:id', 'EmblemController.showImage')
 
 Route.group(() => {
   Route.get('users', 'UserController.index')

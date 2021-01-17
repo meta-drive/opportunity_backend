@@ -12,6 +12,7 @@ const Drive = use('Drive')
  * Resourceful controller for interacting with emblemas
  */
 class EmblemController {
+
   /**
    * Show a list of all emblemas.
    * GET emblemas
@@ -67,10 +68,7 @@ class EmblemController {
         .send({error: {message: 'Erro no upload de arquivo'}})
     }
 
-
-
-
-  return user
+    return user
   }
 
   /**
@@ -108,6 +106,12 @@ class EmblemController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+  }
+
+  async showImage ({ params, response }) {
+    const emblem = await Emblem.findOrFail(params.id)
+
+    return response.download(Helpers.tmpPath(`uploads/${emblem.image}`))
   }
 }
 
