@@ -8,7 +8,9 @@ class QuestionSchema extends Schema {
     this.create('questions', (table) => {
       table.increments()
       table.integer('challenge_id').unsigned().references('id').inTable('challenges')
+      table.string('title', 50).notNullable()
       table.text('description').notNullable()
+      table.text('right_answer').notNullable()
       table.timestamps()
     })
   }

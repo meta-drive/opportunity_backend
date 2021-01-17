@@ -9,10 +9,6 @@ class Answer extends Model {
     return this.belongsTo('App/Models/Question')
   }
 
-  alternative () {
-    return this.belongsTo('App/Models/Alternative')
-  }
-
   challengeAccepted () {
     return this.belongsTo('App/Models/ChallengeAccepted')
   }

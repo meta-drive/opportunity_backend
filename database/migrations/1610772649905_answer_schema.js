@@ -8,7 +8,7 @@ class AnswerSchema extends Schema {
     this.create('answers', (table) => {
       table.increments()
       table.integer('question_id').unsigned().references('id').inTable('questions')
-      table.integer('alternative_id').unsigned().references('id').inTable('alternatives')
+      table.text('answer').notNullable()
       table.integer('challenge_accepted_id').unsigned().references('id').inTable('challenge_accepteds')
       table.timestamps()
     })

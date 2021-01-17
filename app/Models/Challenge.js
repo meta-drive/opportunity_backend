@@ -9,10 +9,6 @@ class Challenge extends Model {
     return this.belongsTo('App/Models/Company')
   }
 
-  competence () {
-    return this.belongsTo('App/Models/Competence')
-  }
-
   questions () {
     return this.hasMany('App/Models/Question')
   }

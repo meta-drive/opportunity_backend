@@ -38,11 +38,14 @@ class QuestionController {
    * @param {Response} ctx.response
    */
   async store ({ params, request, response }) {
-    const dataQuestion = request.only(['description'])
+    const dataQuestion = request.only([
+      'description',
+      'title',
+      'right_answer',
+    ])
 
     dataQuestion.challenge_id = params.challenges_id
     const question = await Question.create(dataQuestion)
-
 
     return question
   }

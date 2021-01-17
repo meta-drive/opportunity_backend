@@ -39,7 +39,6 @@ class CompanyChallengeController {
    */
   async store ({ params, request, response }) {
     const data = request.only([
-      'competence_id',
       'title',
       'description'
     ])
@@ -77,7 +76,6 @@ class CompanyChallengeController {
     const challenge = await Challenge.findOrFail(params.id)
 
     const data = request.only([
-      'competence_id',
       'title',
       'description'
     ])

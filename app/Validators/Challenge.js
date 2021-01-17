@@ -7,7 +7,6 @@ class Challenge {
 
   get rules () {
     return {
-      competence_id: 'required|integer',
       title: 'required|max:50',
       description: 'required'
     }

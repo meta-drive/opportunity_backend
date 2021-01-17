@@ -19,6 +19,7 @@ class ChallengeController {
     const challenges = Challenge
       .query()
       .with('questions')
+      .with('company')
       .fetch()
 
     return challenges

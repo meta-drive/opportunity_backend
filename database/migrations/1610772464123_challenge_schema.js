@@ -8,7 +8,6 @@ class ChallengeSchema extends Schema {
     this.create('challenges', (table) => {
       table.increments()
       table.integer('company_id').unsigned().references('id').inTable('companies')
-      table.integer('competence_id').unsigned().references('id').inTable('competences')
       table.string('title', 50).notNullable()
       table.text('description').notNullable()
       table.timestamps()

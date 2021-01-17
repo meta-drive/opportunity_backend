@@ -5,12 +5,12 @@ const Model = use('Model')
 
 class Question extends Model {
 
-  challenge () {
-    return this.belongsTo('App/Models/Challenge')
+  static get hidden () {
+    return ['right_answer'];
   }
 
-  alternatives () {
-    return this.hasMany('App/Models/Alternative')
+  challenge () {
+    return this.belongsTo('App/Models/Challenge')
   }
 
   answers () {
