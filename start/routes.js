@@ -105,6 +105,7 @@ Route.group(() => {
 
 
 Route.get('challenges', 'ChallengeController.index');
+Route.get('challenges/:id', 'ChallengeController.show');
 
 Route.group(() => {
   Route.post('occupations', 'OccupationController.store')

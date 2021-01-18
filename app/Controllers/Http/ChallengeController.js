@@ -1,5 +1,7 @@
 'use strict'
 
+const { query } = require('../../Models/User')
+
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
@@ -23,6 +25,17 @@ class ChallengeController {
       .fetch()
 
     return challenges
+  }
+
+  async show ({ params, request, response, view }) {
+    const challenge = await Challenge
+    .query()
+    .with('questions')
+    .with('company')
+    .where('id', params.id)
+    .first(params.id)
+
+    return challenge
   }
 }
 
